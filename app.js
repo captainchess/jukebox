@@ -8,7 +8,7 @@ import tracksRouter from "#api/tracks";
 
 app.use(express.json());
 app.use("/playlists", playlistsRouter);
-app.use("/track", tracksRouter);
+app.use("/tracks", tracksRouter);
 
 app.use((err, req, res, next) => {
   // Unique contraint violation
