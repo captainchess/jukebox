@@ -2,8 +2,8 @@ import express from "express";
 const app = express();
 export default app;
 
-import playlistsRouter from "#db/api/playlists";
-import tracksRouter from "#db/api/tracks";
+import playlistsRouter from "#api/playlists";
+import tracksRouter from "#api/tracks";
 //import playlistsTrackRouter from "#db/api/playlists-tracks";
 
 app.use(express.json());

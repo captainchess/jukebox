@@ -1,4 +1,9 @@
 import db from "#db/client";
+import { faker } from "@faker-js/faker";
+import { createTrack } from "./queries/tracks.js";
+import { createPlaylist } from "./queries/playlists.js";
+import { createPlayTrack } from "./queries/playlists-tracks.js";
+
 
 await db.connect();
 await seed();
@@ -12,10 +17,12 @@ async function seed() {
    * at least 15 playlists_tracks
    */
   for (let track = 1; track <= 20; track++) {
-    await createTrack();
+    const newTrack = await createTrack("Track" + track, faker.number.int({min: 200, max: 400}));
     for (let playlist = 1; playlist <= 10; playlist++) {
-      await createPlaylist();
+      const newPlaylist = await createPlaylist("Playlist" + playlist, faker.lorem.paragraph({min: 2, max: 4}));
+      if (track > 18) {
+        await createPlayTrack(newPlaylist.id, newTrack.id);
+      };
     }
-    if (track > 5) await createPlayTrack();
   }
 }
