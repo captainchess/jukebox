@@ -11,8 +11,8 @@ CREATE TABLE playlists (
 
 CREATE TABLE playlists_tracks (
     id serial PRIMARY KEY,
-    playlist_id int NOT NULL REFERENCES playlists(id),
-    track_id int NOT NULL REFERENCES tracks(id),
+    playlist_id int NOT NULL REFERENCES playlists(id) ON DELETE CASCADE,
+    track_id int NOT NULL REFERENCES tracks(id) ON DELETE CASCADE,
     UNIQUE (playlist_id, track_id)
 );
 
